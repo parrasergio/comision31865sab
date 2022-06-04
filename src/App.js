@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
+import Counter from './components/Counter/Counter.js';
+import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 function App() {
+  const [show, setShow] = useState(true)
+
+  const handleAdd = () => {
+    console.log('se ejecuto')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" >
+      { <NavBar /> }
+      { <ItemListContainer greeting='Ferreteria El Cosito' /> }
+      <button onClick={() => setShow(!show)}>show/hide</button>
+      { show && <Counter initial={10} stock={50} onAdd={handleAdd}/>}
     </div>
   );
 }
